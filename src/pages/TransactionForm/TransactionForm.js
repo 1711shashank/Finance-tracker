@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import './TransactionForm.css';
 import moment from 'moment/moment';
 import { AmountField, TransactionTypeField, DatePicker, AddTransactionButton } from './FormField';
-import AddDummyData from '../helperFuncrion/AddDummyData';
 
-const TransactionForm = () => {
+const TransactionForm = ({ onTransactionAdded }) => {
 
     const [amount, setAmount] = useState();
     const [creditDebit, setCreditDebit] = useState('Credit');
@@ -26,16 +25,20 @@ const TransactionForm = () => {
 
         const existingTransactions = JSON.parse(localStorage.getItem('TransactionsData')) || [];
         const updatedTransactions = [...existingTransactions, newTransaction];
+
+        console.log(updatedTransactions);
         localStorage.setItem('TransactionsData', JSON.stringify(updatedTransactions));
 
         claerField();
+        onTransactionAdded();
+
     };
 
 
     return (
         <>
-            <div className='TransactionForm'>
-                <div className="form-container">
+            <div className='transactionForm'>
+                <div className="form-container" style={{position:'fixed'}} >
 
                     <h2 className="form-title"> Add Transaction</h2>
 
@@ -49,7 +52,6 @@ const TransactionForm = () => {
 
                     </form>
 
-                    <AddDummyData />
                 </div>
             </div>
 

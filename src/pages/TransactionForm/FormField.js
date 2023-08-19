@@ -20,9 +20,10 @@ const TransactionTypeField = ({ label, name, value, onChange }) => (
         <label htmlFor={name} className="form-label">
             {label}
         </label>
+
         <select value={value} onChange={onChange} className='form-input' required >
-            <option value={'Credit'}>Credit</option>
-            <option value={'Debit'}>Debit</option>
+            <option className="option" value={'Credit'}>Credit</option>
+            <option className="option" value={'Debit'}>Debit</option>
         </select>
     </div>
 );

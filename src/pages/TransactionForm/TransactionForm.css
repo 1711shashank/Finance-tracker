@@ -1,9 +1,10 @@
-.TransactionForm {
+.transactionForm {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #F4F5FB;
     min-height: 100vh;
+    height: 100%;
+    width: 50%;
 }
 
 .form-container {
@@ -57,8 +58,13 @@
     padding: 8px;
     border: 1px solid #d6d9df;
     border-radius: 4px;
-    transition: border-color 0.3s;
     font-size: 1.6rem;
+}
+
+.option {
+    font-size: 1.6rem;
+    padding: 1rem;
+    text-indent: 5px;
 }
 
 

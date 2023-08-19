@@ -1,5 +1,10 @@
-.home{
+.home {
     display: flex;
     align-items: flex-start;
     justify-content: space-evenly;
+    background: linear-gradient(to right,
+            #F4F5FB 0%,
+            #F4F5FB 50%,
+            #cbd3ff 50%,
+            #cbd3ff 100%);
 }
