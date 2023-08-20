@@ -84,37 +84,57 @@ export const sortedRecordsByDate = (transactionRecords) => {
     return sortedRecords;
 }
 
-export const monthlyAverageBalance = (transactionRecords) => {
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth() + 1;
+export const getLastDayOfMonth = (month) => {
+    const monthDaysMap = new Map([
+        ["January", 31],
+        ["February", 28],
+        ["March", 31],
+        ["April", 30],
+        ["May", 31],
+        ["June", 30],
+        ["July", 31],
+        ["August", 31],
+        ["September", 30],
+        ["October", 31],
+        ["November", 30],
+        ["December", 31]
+    ])
 
-    const getLastDayOfMonth = (year, month) => {
-        const date = new Date(year, month, 0);
-        return date.getDate();
-    };
+    return monthDaysMap.get(month) || "Invalid month";
+}
 
-    const daysInMonth = month === 2 ? 28 : getLastDayOfMonth(year, month);
+export const getmonthlyAverageBalance = (month) => {
 
-    const closingBalances = new Array(daysInMonth).fill(null);
+    const daysInMonth = getLastDayOfMonth(month);
 
-    transactionRecords.forEach((transaction) => {
+    const closingBalances = new Array(daysInMonth + 1).fill(null);
+    closingBalances[0] = 0;
+    
+    
+    const monthlyData = filterDataByMonth(month);
+    
+    for (let i = 1; i <= daysInMonth; i++) {
+        
+        const currentDate = (i) < 10 ? `0${i}` : `${i}`;
+        const dailyRecords = monthlyData.filter((item) => item.date.split(' ')[0] === currentDate);        
+        const dailyClosingBalance = dailyRecords.reduce((sum, item) => sum + (item.credit - item.debit), 0);
+        closingBalances[i] = closingBalances[i - 1] + dailyClosingBalance;
 
-        const date = new Date(transaction.date);
-        const dayOfMonth = date.getDate() - 1;
-        const amount = transaction.transactionType === "Credit" ? transaction.amount : -transaction.amount;
-
-        closingBalances[dayOfMonth] = amount;
-    });
-
-    for (let i = 1; i < daysInMonth; i++) {
-        if (closingBalances[i] === null) closingBalances[i] = closingBalances[i - 1];
     }
-
+        
     const totalClosingBalance = closingBalances.reduce((sum, balance) => sum + balance, 0);
-    const mab = totalClosingBalance / daysInMonth;
+    const monthlyAverageBalance = totalClosingBalance / daysInMonth;
 
-    return mab;
+    return monthlyAverageBalance;
+}
+
+export const filterDataByMonth = (month) => {
+    const existingRecordsJSON = localStorage.getItem('TransactionsData');
+    const transactionRecords = existingRecordsJSON ? JSON.parse(existingRecordsJSON) : [];
+
+    const filteredData = transactionRecords.filter((record) => record.date.split(' ')[1] === month);
+
+    return filteredData;
 }
 
 export const filterAvailableMonths = (transactionData) => {

@@ -36,6 +36,8 @@ const StatementAnalysis = ({ transactionRecords }) => {
 
     return (
         <div id="chart" className="statementAnalysis">
+                                <h2 className="form-title"> Line Chat </h2>
+
             <ReactApexChart options={options} series={series} type="line" height={350} />
         </div>
     );
