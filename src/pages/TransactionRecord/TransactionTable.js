@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React from 'react';
-import { calculateBalance, sortedRecordsByDate } from '../helperFuncrion/helperFunction';
+import { calculateBalance } from '../helperFuncrion/helperFunction';
 
 const TransactionTable = ({ transactionRecords }) => {
 
