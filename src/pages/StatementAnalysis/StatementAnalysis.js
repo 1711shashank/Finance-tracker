@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import './StatementAnalysis.css'
-import { calculateBalance, getWeeklyDate } from "../helperFuncrion/helperFunction";
+import { SelectField } from '../TransactionForm/FormField'
+import { calculateBalance, filterAvailableMonths, filterDataByMonth, getWeeklyDate, getmonthlyAverageBalance } from "../helperFuncrion/helperFunction";
 
 
-const StatementAnalysis = ({ transactionRecords }) => {
+const StatementAnalysis = ({ setShowChartModal }) => {
+
+    const availableMonths = filterAvailableMonths();
+
+    const [selectedMonth, setSelectedMonth] = useState('August');
+
+    const transactionRecords = filterDataByMonth(selectedMonth);
+    const monthlyAverageBalance = getmonthlyAverageBalance(selectedMonth);
+
 
     const data = calculateBalance(transactionRecords);
     const weeklyData = getWeeklyDate(data);
@@ -15,8 +24,10 @@ const StatementAnalysis = ({ transactionRecords }) => {
     const balanceSeries = weekNumbers.map(week => weeklyData[week].balance);
 
     const options = {
-        chart: { type: "line" },
-        xaxis: { categories: weekNumbers.map(week => `Week ${week}`) }
+        chart: { type: "line", zoom: { enabled: false } },
+        xaxis: { categories: weekNumbers.map(week => `Week ${week}`) },
+        colors: ["#FF5733", "#33FF6D", "#337DFF"]
+
     };
 
     const series = [
@@ -36,10 +47,28 @@ const StatementAnalysis = ({ transactionRecords }) => {
 
     return (
         <div id="chart" className="statementAnalysis">
-                                <h2 className="form-title"> Line Chat </h2>
 
-            <ReactApexChart options={options} series={series} type="line" height={350} />
-        </div>
+            <div className='dim_background' onClick={() => setShowChartModal(false)} />
+
+            <div className='chart_modal'>
+
+                <div className="chart-header">
+                    <h2 className="statementAnalysis-title"> Line Chart </h2>
+                    <div className='statementAnalysis-mab'>Monthly Average Balance <span className='mab-amount'>{monthlyAverageBalance}</span>  </div>
+                </div>
+
+                <SelectField label="Select Month" options={availableMonths} onChange={(e) => setSelectedMonth(e.target.value)} />
+
+                <ReactApexChart options={options} series={series} type="line" height={400} />
+
+                <div className="close-button-wrapper">
+                    <button type="submit" onClick={() => setShowChartModal(false)}> Close  </button>
+                </div>
+
+            </div>
+
+
+        </div >
     );
 };
 

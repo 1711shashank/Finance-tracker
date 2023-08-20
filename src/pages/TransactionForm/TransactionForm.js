@@ -33,23 +33,23 @@ const TransactionForm = ({ onTransactionAdded }) => {
 
     return (
         <>
-            <div className='transactionForm'>
-                <div className="form-container" style={{ position: 'fixed' }} >
+            {/* <div className='transactionForm '> */}
+            <div className="form-container" >
 
-                    <h2 className="form-title"> Add Transaction</h2>
+                <h2 className="form-title"> Add Transaction</h2>
 
-                    <form onSubmit={handleSubmit} className="form">
+                <form onSubmit={handleSubmit} className="form">
 
-                        <InputField label="Amount" name="Amount" type="number" value={amount} onChange={(e) => setAmount(parseInt(e.target.value))} />
-                        <SelectField label="Credit / Debit" name="transactionType" options={["Credit", "Debit"]} defaultValue="Credit" onChange={(e) => setTransactionType(e.target.value)} />
-                        <DatePicker label="Date" name="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+                    <InputField label="Amount" type="number" value={amount} onChange={(e) => setAmount(parseInt(e.target.value))} />
+                    <SelectField label="Credit / Debit" options={["Credit", "Debit"]} onChange={(e) => setTransactionType(e.target.value)} />
+                    <DatePicker label="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
 
-                        <AddTransactionButton onSubmit={handleSubmit} />
+                    <AddTransactionButton onSubmit={handleSubmit} />
 
-                    </form>
+                </form>
 
-                </div>
             </div>
+            {/* </div> */}
 
         </>
     );

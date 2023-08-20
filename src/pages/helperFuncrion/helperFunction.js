@@ -109,23 +109,25 @@ export const getmonthlyAverageBalance = (month) => {
 
     const closingBalances = new Array(daysInMonth + 1).fill(null);
     closingBalances[0] = 0;
-    
-    
+
+
     const monthlyData = filterDataByMonth(month);
-    
+
     for (let i = 1; i <= daysInMonth; i++) {
-        
+
         const currentDate = (i) < 10 ? `0${i}` : `${i}`;
-        const dailyRecords = monthlyData.filter((item) => item.date.split(' ')[0] === currentDate);        
+        const dailyRecords = monthlyData.filter((item) => item.date.split(' ')[0] === currentDate);
         const dailyClosingBalance = dailyRecords.reduce((sum, item) => sum + (item.credit - item.debit), 0);
         closingBalances[i] = closingBalances[i - 1] + dailyClosingBalance;
 
     }
-        
+
     const totalClosingBalance = closingBalances.reduce((sum, balance) => sum + balance, 0);
     const monthlyAverageBalance = totalClosingBalance / daysInMonth;
 
-    return monthlyAverageBalance;
+    const formattedMab = monthlyAverageBalance.toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
+
+    return formattedMab;
 }
 
 export const filterDataByMonth = (month) => {
@@ -137,7 +139,11 @@ export const filterDataByMonth = (month) => {
     return filteredData;
 }
 
-export const filterAvailableMonths = (transactionData) => {
+export const filterAvailableMonths = () => {
+
+    const existingRecordsJSON = localStorage.getItem('TransactionsData');
+    const transactionData = existingRecordsJSON ? JSON.parse(existingRecordsJSON) : [];
+
     const availableMonths = [];
 
     if (transactionData) {

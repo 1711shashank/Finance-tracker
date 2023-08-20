@@ -3,29 +3,25 @@ import './TransactionRecord.css'
 import TransactionTable from './TransactionTable'
 
 
-const TransactionRecord = ({ transactionRecords, onTransactionAdded }) => {
-
+const TransactionRecord = ({ transactionRecords, onTransactionAdded, setShowChartModal }) => {
 
     const handleAddDummyData = () => {
-
         const dummyRecord = createDummyRecord();
-        const updatedRecord = insertNewRecord(dummyRecord);
-
-        console.log(updatedRecord);
+        insertNewRecord(dummyRecord);
         onTransactionAdded();
     }
 
 
     const handleStatementAnalysis = () => {
-
+        setShowChartModal(true);
     }
 
     return (
         <>
-            <div className='transactionRecord'>
-                <div className='form-container'>
+            {/* <div className='transactionRecord '> */}
+                <div className='form-container' >
 
-                    <h2 className="statement-title">Transaction Data</h2>
+                    <h2 className="form-title">Transaction Data</h2>
 
                     <TransactionTable transactionRecords={transactionRecords} />
 
@@ -40,7 +36,7 @@ const TransactionRecord = ({ transactionRecords, onTransactionAdded }) => {
                     </div>
 
                 </div>
-            </div>
+            {/* </div> */}
         </>
     )
 }

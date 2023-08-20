@@ -14,14 +14,14 @@ const InputField = ({ label, type, value, onChange }) => (
     </div>
 );
 
-const SelectField = ({ label, defaultValue, options, onChange }) => (
+const SelectField = ({ label,  options, onChange }) => (
 
     <div className="form-group">
         <label className="form-label">
             {label}
         </label>
 
-        <select onChange={onChange} className='form-input' value={defaultValue} required >
+        <select onChange={onChange} className='form-input' required >
             {
                 options.map((item, index) => (
                     <option className="option" key={index}>{item}</option>

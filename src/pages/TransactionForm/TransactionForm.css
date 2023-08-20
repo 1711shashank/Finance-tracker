@@ -16,17 +16,12 @@
     border: 1px solid #eceef3;
     border-radius: 10px;
     width: 600vw;
+    height: 75%;
+    overflow-y: scroll;
 }
 
-
-.form-title {
-    padding-bottom: 2rem;
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 600;
-    color: #16192c;
-    margin: 0.6rem 0;
-    text-align: left;
+.form-container::-webkit-scrollbar {
+    display: none;
 }
 
 

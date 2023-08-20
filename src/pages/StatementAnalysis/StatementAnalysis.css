@@ -6,3 +6,76 @@
     height: auto;
     border-radius: 25px;
 }
+
+.statementAnalysis-mab {
+    font-size: 1.4rem;
+    color: #5e5e5e;
+    font-weight: 500;
+
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+
+}
+
+.mab-amount {
+    margin-left: 1rem;
+    font-size: 2.2rem;
+}
+
+.chart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    width: 100%;
+}
+
+.statementAnalysis-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #16192c;
+    text-align: left;
+}
+
+.dim_background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.chart_modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+    background-color: white;
+    width: 40%;
+    padding: 3rem;
+    font-size: 2rem;
+}
+
+.close-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.close-button-wrapper>* {
+    width: 80%;
+    margin-top: 1rem;
+    padding: 10px;
+    background-color: #5c60f5;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 500;
+    height: 4rem;
+}

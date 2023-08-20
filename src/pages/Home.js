@@ -3,9 +3,10 @@ import './Home.css'
 import TransactionForm from './TransactionForm/TransactionForm'
 import TransactionRecord from './TransactionRecord/TransactionRecord'
 import StatementAnalysis from './StatementAnalysis/StatementAnalysis'
-import Header from './Header'
 
 const Home = () => {
+
+    const [showChartModal, setShowChartModal] = useState(false);
 
     const [transactionRecords, setTransactionRecords] = useState([]);
 
@@ -21,12 +22,15 @@ const Home = () => {
 
     return (
         <>
-            <Header/>
             <div className='home'>
                 <TransactionForm onTransactionAdded={handleTransactionAdded} />
-                <TransactionRecord transactionRecords={transactionRecords} onTransactionAdded={handleTransactionAdded} />
-                {/* <StatementAnalysis transactionRecords={transactionRecords} /> */}
+                <TransactionRecord transactionRecords={transactionRecords} onTransactionAdded={handleTransactionAdded} setShowChartModal={setShowChartModal} />
             </div>
+
+            {
+                showChartModal
+                && <StatementAnalysis transactionRecords={transactionRecords} setShowChartModal={setShowChartModal} />
+            }
         </>
     )
 }

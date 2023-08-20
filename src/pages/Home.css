@@ -1,10 +1,15 @@
 .home {
     display: flex;
     align-items: flex-start;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    align-items: center;
+
+    height: 100vh;
     background: linear-gradient(to right,
             #F4F5FB 0%,
             #F4F5FB 50%,
             #cbd3ff 50%,
-            #cbd3ff 100%);
+            #cbd3ff 100%);    
 }
+
+
