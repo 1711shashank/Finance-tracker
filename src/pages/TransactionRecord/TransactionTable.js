@@ -1,44 +1,35 @@
 import moment from 'moment';
 import React from 'react';
+import { calculateBalance, sortedRecordsByDate } from '../helperFuncrion/helperFunction';
 
 const TransactionTable = ({ transactionRecords }) => {
 
-    let sortedRecords = [];
-    let reminingBalance = 0;
-
-    if (transactionRecords && transactionRecords.length > 0) {
-        sortedRecords = transactionRecords?.slice().sort((a, b) => {
-            return new Date(b.date) - new Date(a.date);
-        });
-
-        reminingBalance = transactionRecords.reduce((sum, record) => {
-            record.creditDebit === 'Debit' && record.amount ? sum -= record.amount : sum += record.amount
-            return sum;
-        }, 0);
-    }
+    const updatedRecords = calculateBalance(transactionRecords);
 
     return (
         <table>
             <thead>
                 <tr className='table-head'>
                     <th>Date</th>
-                    <th>Amount</th>
-                    <th>Type</th>
+                    <th>Transaction Type</th>
+                    <th>Credit </th>
+                    <th>Debit </th>
+                    <th>Balance </th>
                 </tr>
             </thead>
+
             <tbody>
-                {sortedRecords.map((record, index) => (
-                    <tr key={index} className='table-column'>
-                        <td>{moment(record.date).format('DD MMM YYYY')}</td>
-                        <td>{record.creditDebit}</td>
-                        <td>{record.amount}</td>
-                    </tr>
-                ))}
-                <tr className='table-column'>
-                    <td></td>
-                    <td style={{ fontWeight: '700' }}> Balance</td>
-                    <td>{reminingBalance}</td>
-                </tr>
+                {
+                    updatedRecords.map((record, index) => (
+                        <tr key={index} className='table-column'>
+                            <td>{moment(record.date).format('DD MMM YYYY')}</td>
+                            <td>{record.transactionType}</td>
+                            <td>{record.credit !== 0 && record.credit}</td>
+                            <td>{record.debit !== 0 && record.debit}</td>
+                            <td>{record.balance}</td>
+                        </tr>
+                    ))
+                }
             </tbody>
         </table>
     );

@@ -1,28 +1,18 @@
+import { createDummyRecord, insertNewRecord } from '../helperFuncrion/helperFunction';
 import './TransactionRecord.css'
 import TransactionTable from './TransactionTable'
 
 
 const TransactionRecord = ({ transactionRecords, onTransactionAdded }) => {
 
+
     const handleAddDummyData = () => {
 
+        const dummyRecord = createDummyRecord();
+        const updatedRecord = insertNewRecord(dummyRecord);
 
-        const dummyRecord = {
-            amount: Math.floor(Math.random() * 9 + 1) * 1000,
-            creditDebit: Math.random() < 0.5 ? 'Credit' : 'Debit',
-            date: new Date()
-        };
-
-
-        const existingRecordsJSON = localStorage.getItem('TransactionsData');
-        const existingRecords = existingRecordsJSON ? JSON.parse(existingRecordsJSON) : [];
-
-        const updatedRecords = [...existingRecords, dummyRecord];
-        localStorage.setItem('TransactionsData', JSON.stringify(updatedRecords));
-
-        console.log(dummyRecord);
+        console.log(updatedRecord);
         onTransactionAdded();
-
     }
 
 
@@ -37,10 +27,7 @@ const TransactionRecord = ({ transactionRecords, onTransactionAdded }) => {
 
                     <h2 className="statement-title">Transaction Data</h2>
 
-
-
                     <TransactionTable transactionRecords={transactionRecords} />
-
 
                     <div className='button-wrapper'>
 

@@ -8,9 +8,8 @@ const Home = () => {
     const [transactionRecords, setTransactionRecords] = useState([]);
 
     useEffect(() => {
-        const tempData = JSON.parse(localStorage.getItem('TransactionsData')) || [];
-        setTransactionRecords(tempData);
-        console.log('tempData', tempData);
+        const data = JSON.parse(localStorage.getItem('TransactionsData')) || [];
+        setTransactionRecords(data);
     }, [])
 
     const handleTransactionAdded = () => {
@@ -21,7 +20,7 @@ const Home = () => {
     return (
         <>
             <div className='home'>
-                <TransactionForm />
+                <TransactionForm onTransactionAdded={handleTransactionAdded} />
                 <TransactionRecord transactionRecords={transactionRecords} onTransactionAdded={handleTransactionAdded} />
             </div>
         </>
