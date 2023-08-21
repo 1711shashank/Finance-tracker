@@ -14,26 +14,32 @@
 
 
 
-.noRecordFound-wrapper {
+.noRecordFound-wrapper,
+.chartImg-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
 
     width: 100%;
-    height: 90%;
 }
 
 
-.noRecordFound-wrapper p {
+.noRecordFound-wrapper p,
+.chartImg-wrapper p {
+    padding: 2.5rem 0;
     font-size: 2rem;
     color: gray;
 }
 
-.noRecordFound-wrapper img {
+.noRecordFound-wrapper img{
     width: 65%;
-    height: 65%;
 }
+.chartImg-wrapper img {
+    width: 45%;
+}
+
+
 
 .modal-open {
     overflow: hidden;

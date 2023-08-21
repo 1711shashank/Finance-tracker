@@ -21,7 +21,7 @@ const SelectField = ({ label, options, onChange }) => (
             {label}
         </label>
 
-        <select onChange={onChange} className='form-input' required >
+        <select onChange={onChange} className='form-input' >
             {
                 options.map((item, index) => (
                     <option className="option" key={index}>{item}</option>

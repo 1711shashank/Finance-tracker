@@ -133,7 +133,7 @@ export const filterAvailableMonths = () => {
     const existingRecordsJSON = localStorage.getItem('TransactionsData');
     const transactionData = existingRecordsJSON ? JSON.parse(existingRecordsJSON) : [];
 
-    const availableMonths = [];
+    const availableMonths = ['Select Month'];
 
     if (transactionData) {
         transactionData.forEach((transaction) => {

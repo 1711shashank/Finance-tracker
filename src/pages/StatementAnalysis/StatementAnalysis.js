@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import './StatementAnalysis.css'
+import ChartImg from '../../images/chart.svg'
 import { SelectField } from '../helperFuncrion/FormField'
 import { calculateBalance, filterAvailableMonths, filterDataByMonth, getWeeklyDate, getmonthlyAverageBalance } from "../helperFuncrion/helperFunction";
 
@@ -9,7 +10,7 @@ const StatementAnalysis = ({ setShowChartModal }) => {
 
     const availableMonths = filterAvailableMonths();
 
-    const [selectedMonth, setSelectedMonth] = useState('August');
+    const [selectedMonth, setSelectedMonth] = useState('Select Month');
 
     const transactionRecords = filterDataByMonth(selectedMonth);
     const monthlyAverageBalance = getmonthlyAverageBalance(selectedMonth);
@@ -54,12 +55,20 @@ const StatementAnalysis = ({ setShowChartModal }) => {
 
                 <div className="chart-header">
                     <h2 className="statementAnalysis-title"> Line Chart </h2>
-                    <div className='statementAnalysis-mab'>Monthly Average Balance <span className='mab-amount'>{monthlyAverageBalance}</span>  </div>
+                    {selectedMonth !== 'Select Month' && <div className='statementAnalysis-mab'>Monthly Average Balance <span className='mab-amount'>{monthlyAverageBalance}</span>  </div>}
                 </div>
 
                 <SelectField label="Select Month" options={availableMonths} onChange={(e) => setSelectedMonth(e.target.value)} />
 
-                <ReactApexChart options={options} series={series} type="line" height={300} />
+                {
+                    selectedMonth !== 'Select Month'
+
+                        ? <ReactApexChart options={options} series={series} type="line" height={300} />
+                        : <div className="chartImg-wrapper">
+                            <p> Please select the Month</p>
+                            <img src={ChartImg} alt="" />
+                        </div>
+                }
 
                 <div className="close-button-wrapper">
                     <button type="submit" onClick={() => setShowChartModal(false)}> Close  </button>

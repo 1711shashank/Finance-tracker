@@ -15,8 +15,6 @@ const Header = ({ onTransactionAdded, setShowChartModal }) => {
         <>
             <div className='header'>
 
-                {/* <div className='project-name'>Finance Tracker</div> */}
-
                 <button type="submit" className='statement-analysis addDummyRecordBtn' onClick={handleAddDummyData}>
                     Add Dummy Record
                 </button>

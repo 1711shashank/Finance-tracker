@@ -8,11 +8,14 @@ import Header from './Header'
 const Home = () => {
 
     const [showChartModal, setShowChartModal] = useState(false);
-
     const [transactionRecords, setTransactionRecords] = useState([]);
 
     useEffect(() => {
-        showChartModal ? document.body.classList.add('modal-open') : document.body.classList.remove('modal-open')
+
+        showChartModal
+            ? document.body.classList.add('modal-open')
+            : document.body.classList.remove('modal-open')
+
     }, [showChartModal]);
 
     useEffect(() => {
