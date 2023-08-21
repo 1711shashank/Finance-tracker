@@ -10,7 +10,7 @@ const TransactionRecord = ({ transactionRecords }) => {
 
     return (
         <>
-            <div className='card' >
+            <div className='card transaction-table' >
 
                 <h2 className="card-title">Transaction Data</h2>
 
@@ -18,7 +18,7 @@ const TransactionRecord = ({ transactionRecords }) => {
                     updatedRecords.length === 0 ?
                         <div className='noRecordFound-wrapper'>
                             <p>No Record Found</p>
-                            <img  src={RecordImg} alt='' />
+                            <img src={RecordImg} alt='' />
                         </div>
                         : <table>
                             <thead>
@@ -35,7 +35,7 @@ const TransactionRecord = ({ transactionRecords }) => {
                                 {
                                     updatedRecords.map((record, index) => (
                                         <tr key={index} className='table-column'>
-                                            <td>{moment(record.date).format('DD MMM YYYY')}</td>
+                                            <td>{moment(record.date).format('DD MMM')}</td>
                                             <td>{record.transactionType}</td>
                                             <td>{record.credit !== 0 && record.credit}</td>
                                             <td>{record.debit !== 0 && record.debit}</td>
@@ -45,10 +45,7 @@ const TransactionRecord = ({ transactionRecords }) => {
                                 }
                             </tbody>
                         </table>
-
                 }
-
-
             </div>
         </>
     )

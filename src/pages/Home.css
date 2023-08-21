@@ -32,9 +32,10 @@
     color: gray;
 }
 
-.noRecordFound-wrapper img{
+.noRecordFound-wrapper img {
     width: 65%;
 }
+
 .chartImg-wrapper img {
     width: 45%;
 }
@@ -43,4 +44,15 @@
 
 .modal-open {
     overflow: hidden;
+}
+
+
+
+@media (max-width: 700px) {
+    .body {
+        flex-direction: column;
+        height: auto;
+        background: #eff1ff;
+    }
+
 }

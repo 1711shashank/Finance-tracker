@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import './TransactionForm.css';
 import moment from 'moment/moment';
 import { InputField, SelectField, DatePicker, AddTransactionButton } from '../helperFuncrion/FormField';
-import { createTransactionObj, insertNewRecord } from '../helperFuncrion/helperFunction';
+import { createDummyRecord, createTransactionObj, insertNewRecord } from '../helperFuncrion/helperFunction';
 
-const TransactionForm = ({ onTransactionAdded }) => {
+const TransactionForm = ({ onTransactionAdded, setShowChartModal }) => {
 
     const [amount, setAmount] = useState();
     const [transactionType, setTransactionType] = useState('Credit');
@@ -27,21 +27,34 @@ const TransactionForm = ({ onTransactionAdded }) => {
 
         claerField();
         onTransactionAdded();
-
     };
+
+    const handleAddDummyData = () => {
+        const dummyRecord = createDummyRecord();
+        insertNewRecord(dummyRecord);
+
+        onTransactionAdded();
+    }
 
 
     return (
         <>
-            <div className="card" >
+            <div className="card transaction-form" >
 
-                <h2 className="card-title"> Add Transaction</h2>
+                <div style={{display:'flex', justifyContent:'space-between'}}>
+                    <h2 className="card-title"> Add Transaction</h2>
+                    <button type="submit" className='addDummyRecordBtn' onClick={handleAddDummyData}>
+                        Add Dummy Record
+                    </button>
+
+                </div>
+
 
                 <form onSubmit={handleSubmit} className="form">
 
-                    <InputField label="Amount" type="number" value={amount} onChange={(e) => setAmount(parseInt(e.target.value))} />
-                    <SelectField label="Credit / Debit" options={["Credit", "Debit"]} onChange={(e) => setTransactionType(e.target.value)} />
                     <DatePicker label="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+                    <SelectField label="Credit / Debit" options={["Credit", "Debit"]} onChange={(e) => setTransactionType(e.target.value)} />
+                    <InputField label="Amount" type="number" value={amount} onChange={(e) => setAmount(parseInt(e.target.value))} />
 
                     <AddTransactionButton onSubmit={handleSubmit} isFormValid={!amount} />
 

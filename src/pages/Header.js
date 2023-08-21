@@ -1,23 +1,14 @@
 import React from 'react'
 import './Header.css'
-import { createDummyRecord, insertNewRecord } from './helperFuncrion/helperFunction';
-const Header = ({ onTransactionAdded, setShowChartModal }) => {
-
-    const handleAddDummyData = () => {
-        const dummyRecord = createDummyRecord();
-        insertNewRecord(dummyRecord);
-
-        onTransactionAdded();
-    }
+const Header = ({ setShowChartModal }) => {
 
 
     return (
         <>
             <div className='header'>
 
-                <button type="submit" className='statement-analysis addDummyRecordBtn' onClick={handleAddDummyData}>
-                    Add Dummy Record
-                </button>
+                <p className='project-name'> Finance Tracker </p>
+
                 <button type="submit" className='statement-analysis statementAnalysisBtn' onClick={() => setShowChartModal(true)}>
                     Statement Analysis
                 </button>

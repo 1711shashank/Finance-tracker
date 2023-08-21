@@ -35,7 +35,7 @@ const Home = () => {
                 <Header onTransactionAdded={handleTransactionAdded} setShowChartModal={setShowChartModal} />
 
                 <div className='body'>
-                    <TransactionForm onTransactionAdded={handleTransactionAdded} />
+                    <TransactionForm onTransactionAdded={handleTransactionAdded} setShowChartModal={setShowChartModal} />
                     <TransactionRecord transactionRecords={transactionRecords} />
                 </div>
 

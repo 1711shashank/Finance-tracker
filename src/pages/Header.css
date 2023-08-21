@@ -1,7 +1,17 @@
 .addDummyRecordBtn {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
+    padding: 6px 20px;
+    background-color: #5c60f5;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 500;
+    width: min-content;
+    height: 2.5rem;
+
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .statementAnalysisBtn {
@@ -11,19 +21,12 @@
 }
 
 
-
-
 .project-name {
-
     position: absolute;
-    top:2rem;
-
-    left: 50%;
-    transform: translate(-50% );
-
+    top: 1rem;
+    margin-left: 2rem;
     font-size: 3.5rem;
     font-weight: 500;
-    margin-right: 12rem;
     color: #5C60F5;
     background-clip: text;
 
@@ -55,4 +58,16 @@
     white-space: nowrap;
     overflow: hidden;
 
+}
+
+@media (max-width: 700px) {
+
+    .statementAnalysisBtn {
+        position: absolute;
+        top: 54rem;
+        right: 1rem;
+        padding: 3px 20px;
+        height: 2.5rem;
+        margin-right: 2.2rem;
+    }
 }

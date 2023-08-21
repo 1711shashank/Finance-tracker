@@ -79,3 +79,13 @@
     font-weight: 500;
     height: 4rem;
 }
+
+
+
+
+@media (max-width: 900px) {
+    .chart_modal {
+        width: 80%;
+        
+    }
+}
