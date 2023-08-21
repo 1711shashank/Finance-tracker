@@ -33,7 +33,6 @@ const TransactionForm = ({ onTransactionAdded }) => {
 
     return (
         <>
-            {/* <div className='transactionForm '> */}
             <div className="card" >
 
                 <h2 className="card-title"> Add Transaction</h2>
@@ -44,12 +43,11 @@ const TransactionForm = ({ onTransactionAdded }) => {
                     <SelectField label="Credit / Debit" options={["Credit", "Debit"]} onChange={(e) => setTransactionType(e.target.value)} />
                     <DatePicker label="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
 
-                    <AddTransactionButton onSubmit={handleSubmit} />
+                    <AddTransactionButton onSubmit={handleSubmit} isFormValid={!amount} />
 
                 </form>
 
             </div>
-            {/* </div> */}
 
         </>
     );

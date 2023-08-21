@@ -45,8 +45,13 @@ const DatePicker = ({ label, type, value, onChange }) => (
     </div>
 );
 
-const AddTransactionButton = ({ onSubmit }) => (
-    <button type="submit" className={`form-button`} onClick={onSubmit}>
+const AddTransactionButton = ({ onSubmit, isFormValid }) => (
+    <button
+        type="submit"
+        className={`form-button ${isFormValid ? 'disabled' : ''}`}
+        onClick={onSubmit}
+        disabled={isFormValid}
+    >
         Add Transaction
     </button>
 );
