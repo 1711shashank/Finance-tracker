@@ -41,7 +41,7 @@ const TransactionForm = ({ onTransactionAdded, setShowChartModal }) => {
         <>
             <div className="card transaction-form" >
 
-                <div style={{display:'flex', justifyContent:'space-between'}}>
+                <div style={{display:'flex', justifyContent:'space-between', marginBottom:'1rem'}}>
                     <h2 className="card-title"> Add Transaction</h2>
                     <button type="submit" className='addDummyRecordBtn' onClick={handleAddDummyData}>
                         Add Dummy Record
@@ -59,9 +59,8 @@ const TransactionForm = ({ onTransactionAdded, setShowChartModal }) => {
                     <AddTransactionButton onSubmit={handleSubmit} isFormValid={!amount} />
 
                 </form>
-
+                
             </div>
-
         </>
     );
 };

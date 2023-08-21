@@ -11,9 +11,7 @@ const TransactionRecord = ({ transactionRecords }) => {
     return (
         <>
             <div className='card transaction-table' >
-
                 <h2 className="card-title">Transaction Data</h2>
-
                 {
                     updatedRecords.length === 0 ?
                         <div className='noRecordFound-wrapper'>

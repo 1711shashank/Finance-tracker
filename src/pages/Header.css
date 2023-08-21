@@ -57,14 +57,13 @@
 
     white-space: nowrap;
     overflow: hidden;
-
 }
 
 @media (max-width: 700px) {
 
     .statementAnalysisBtn {
         position: absolute;
-        top: 54rem;
+        top: 55rem;
         right: 1rem;
         padding: 3px 20px;
         height: 2.5rem;

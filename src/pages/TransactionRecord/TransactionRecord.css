@@ -18,6 +18,7 @@ td {
     color: #131313;
     margin-bottom: 1.8rem;
     border-bottom: 1px solid gray;
+    width: max-content;
 }
 
 
@@ -26,6 +27,7 @@ td {
     font-size: 1.4rem;
     color: #3b3b3b;
     margin-bottom: 1.8rem;
+    width: max-content;
 }
 
 .card-title {
@@ -35,7 +37,6 @@ td {
     color: #16192c;
     text-align: left;
     margin-bottom: 2.5rem;
-
 }
 
 
@@ -53,6 +54,8 @@ td {
         margin-bottom: 1rem;
     }
 
+}
+@media (max-width: 910px) {
 
     .table-head{
         width: 100%;
@@ -68,5 +71,4 @@ td {
         padding: 3px;
         width: max-content;
     }
-
 }

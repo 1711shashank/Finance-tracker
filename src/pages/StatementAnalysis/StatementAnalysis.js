@@ -8,13 +8,11 @@ import { calculateBalance, filterAvailableMonths, filterDataByMonth, getWeeklyDa
 
 const StatementAnalysis = ({ setShowChartModal }) => {
 
-    const availableMonths = filterAvailableMonths();
-
     const [selectedMonth, setSelectedMonth] = useState('Select Month');
 
-    const transactionRecords = filterDataByMonth(selectedMonth);
     const monthlyAverageBalance = getmonthlyAverageBalance(selectedMonth);
-
+    const transactionRecords = filterDataByMonth(selectedMonth);
+    const availableMonths = filterAvailableMonths();
 
     const data = calculateBalance(transactionRecords);
     const weeklyData = getWeeklyDate(data);
@@ -71,12 +69,10 @@ const StatementAnalysis = ({ setShowChartModal }) => {
                 }
 
                 <div className="close-button-wrapper">
-                    <button type="submit" onClick={() => setShowChartModal(false)}> Close  </button>
+                    <button type="submit" onClick={() => setShowChartModal(false)}> Close </button>
                 </div>
 
             </div>
-
-
         </div >
     );
 };
