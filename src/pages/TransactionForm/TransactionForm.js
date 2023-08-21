@@ -36,12 +36,21 @@ const TransactionForm = ({ onTransactionAdded, setShowChartModal }) => {
         onTransactionAdded();
     }
 
+    const handleAmountChange = (e) => {
+        const inputValue = e.target.value;
+        const isValidInput = /^\d*\.?\d{0,2}$/.test(inputValue);
+
+        if (isValidInput) {
+            setAmount(inputValue);
+        }
+    }
+
 
     return (
         <>
             <div className="card transaction-form" >
 
-                <div style={{display:'flex', justifyContent:'space-between', marginBottom:'1rem'}}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
                     <h2 className="card-title"> Add Transaction</h2>
                     <button type="submit" className='addDummyRecordBtn' onClick={handleAddDummyData}>
                         Add Dummy Record
@@ -54,12 +63,12 @@ const TransactionForm = ({ onTransactionAdded, setShowChartModal }) => {
 
                     <DatePicker label="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
                     <SelectField label="Credit / Debit" options={["Credit", "Debit"]} onChange={(e) => setTransactionType(e.target.value)} />
-                    <InputField label="Amount" type="number" value={amount} onChange={(e) => setAmount(parseInt(e.target.value))} />
+                    <InputField label="Amount" type="text" value={amount} onChange={handleAmountChange} />
 
                     <AddTransactionButton onSubmit={handleSubmit} isFormValid={!amount} />
 
                 </form>
-                
+
             </div>
         </>
     );

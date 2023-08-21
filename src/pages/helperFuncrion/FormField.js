@@ -5,7 +5,7 @@ const InputField = ({ label, type, value, onChange }) => (
         </label>
         <input
             type={type}
-            placeholder="500"
+            placeholder="500.00"
             className={`form-input`}
             value={value}
             onChange={onChange}

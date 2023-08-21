@@ -2,6 +2,8 @@ import moment from "moment";
 
 export const createTransactionObj = (date, transactionType, amount) => {
 
+    amount = parseFloat(amount).toFixed(2);
+
     const newTransaction = {
         debit: transactionType === 'Debit' ? amount : 0,
         credit: transactionType === 'Credit' ? amount : 0,
@@ -15,7 +17,7 @@ export const createDummyRecord = () => {
 
     const date = moment(new Date(new Date().getFullYear(), new Date().getMonth(), Math.floor(Math.random() * 30) + 1)).format('DD MMMM YYYY');
     const transactionType = Math.random() < 0.5 ? 'Credit' : 'Debit';
-    const amount = Math.floor(Math.random() * 9 + 1) * 1000;
+    const amount = (Math.random() * 9000 + 1000).toFixed(2);
 
     return createTransactionObj(date, transactionType, amount);;
 }
@@ -40,23 +42,25 @@ export const calculateBalance = (transactionRecords) => {
         return [];
     }
 
-    let runningBalance = 0;
+    let runningBalance = parseFloat(0);
     const updatedRecords = transactionRecords.map((record, index) => {
-        let balance = 0;
+        let balance = 0.0;
 
         if (index === 0) {
-            balance = record.transactionType === 'Credit' ? record.credit : -record.debit;
+            balance = record.transactionType === 'Credit' ? record.credit : (record.debit) * -1;
+            balance = parseFloat(balance);
         } else {
             balance = runningBalance + (record.credit - record.debit);
         }
 
-        runningBalance = balance;
+        runningBalance = balance
 
         return {
             ...record,
-            balance: balance
+            balance: balance.toFixed(2)
         };
     });
+
 
     return updatedRecords;
 }

@@ -23,9 +23,12 @@ const StatementAnalysis = ({ setShowChartModal }) => {
     const balanceSeries = weekNumbers.map(week => weeklyData[week].balance);
 
     const options = {
+
+        colors: ["#FF5733", "#33FF6D", "#337DFF"],
         chart: { type: "line", zoom: { enabled: false } },
+
+        yaxis: { labels: { formatter: value => value.toFixed(2) } },
         xaxis: { categories: weekNumbers.map(week => `Week ${week}`) },
-        colors: ["#FF5733", "#33FF6D", "#337DFF"]
 
     };
 
