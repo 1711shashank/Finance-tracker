@@ -1,42 +1,55 @@
-import { createDummyRecord, insertNewRecord } from '../helperFuncrion/helperFunction';
+import { calculateBalance } from '../helperFuncrion/helperFunction';
+import RecordImg from '../../images/table.svg'
 import './TransactionRecord.css'
-import TransactionTable from './TransactionTable'
+import moment from 'moment';
 
 
-const TransactionRecord = ({ transactionRecords, onTransactionAdded, setShowChartModal }) => {
+const TransactionRecord = ({ transactionRecords }) => {
 
-    const handleAddDummyData = () => {
-        const dummyRecord = createDummyRecord();
-        insertNewRecord(dummyRecord);
-        onTransactionAdded();
-    }
-
-
-    const handleStatementAnalysis = () => {
-        setShowChartModal(true);
-    }
+    const updatedRecords = calculateBalance(transactionRecords);
 
     return (
         <>
-            {/* <div className='transactionRecord '> */}
-                <div className='form-container' >
+            <div className='card' >
 
-                    <h2 className="form-title">Transaction Data</h2>
+                <h2 className="card-title">Transaction Data</h2>
 
-                    <TransactionTable transactionRecords={transactionRecords} />
+                {
+                    updatedRecords.length === 0 ?
+                        <div className='noRecordFound-wrapper'>
+                            <p>No Record Found</p>
+                            <img  src={RecordImg} alt='' />
+                        </div>
+                        : <table>
+                            <thead>
+                                <tr className='table-head'>
+                                    <th>Date</th>
+                                    <th>Transaction Type</th>
+                                    <th>Credit </th>
+                                    <th>Debit </th>
+                                    <th>Balance </th>
+                                </tr>
+                            </thead>
 
-                    <div className='button-wrapper'>
+                            <tbody>
+                                {
+                                    updatedRecords.map((record, index) => (
+                                        <tr key={index} className='table-column'>
+                                            <td>{moment(record.date).format('DD MMM YYYY')}</td>
+                                            <td>{record.transactionType}</td>
+                                            <td>{record.credit !== 0 && record.credit}</td>
+                                            <td>{record.debit !== 0 && record.debit}</td>
+                                            <td>{record.balance}</td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
 
-                        <button type="submit" className='statement-analysis' onClick={handleAddDummyData}>
-                            Add Dummy Record
-                        </button>
-                        <button type="submit" className='statement-analysis' onClick={handleStatementAnalysis}>
-                            Statement Analysis
-                        </button>
-                    </div>
+                }
 
-                </div>
-            {/* </div> */}
+
+            </div>
         </>
     )
 }

@@ -1,15 +1,40 @@
-.home {
+.body {
     display: flex;
-    align-items: flex-start;
     justify-content: space-around;
     align-items: center;
-
+    padding-top: 3.5rem;
     height: 100vh;
+    overflow: hidden;
     background: linear-gradient(to right,
-            #F4F5FB 0%,
-            #F4F5FB 50%,
-            #cbd3ff 50%,
-            #cbd3ff 100%);    
+            #eff1ff 0%,
+            #eff1ff 50%,
+            #d4d9ff 50%,
+            #d4d9ff 100%);
 }
 
 
+
+.noRecordFound-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    width: 100%;
+    height: 90%;
+}
+
+
+.noRecordFound-wrapper p {
+    font-size: 2rem;
+    color: gray;
+}
+
+.noRecordFound-wrapper img {
+    width: 65%;
+    height: 65%;
+}
+
+.modal-open {
+    overflow: hidden;
+}

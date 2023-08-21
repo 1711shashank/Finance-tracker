@@ -1,35 +1,23 @@
 import moment from "moment";
 
-export const createDummyRecord = () => {
-
-    const dummyRecord = {
-        date: moment(new Date(new Date().getFullYear(), new Date().getMonth(), Math.floor(Math.random() * 30) + 1)).format('DD MMMM YYYY'),
-        transactionType: Math.random() < 0.5 ? 'Credit' : 'Debit',
-        credit: 0,
-        debit: 0
-    };
-
-    dummyRecord.transactionType === 'Credit'
-        ? dummyRecord.credit = Math.floor(Math.random() * 9 + 1) * 1000
-        : dummyRecord.debit = Math.floor(Math.random() * 9 + 1) * 1000
-
-    return dummyRecord;
-}
-
 export const createTransactionObj = (date, transactionType, amount) => {
 
     const newTransaction = {
-        debit: 0,
-        credit: 0,
-        transactionType: transactionType,
+        debit: transactionType === 'Debit' ? amount : 0,
+        credit: transactionType === 'Credit' ? amount : 0,
+        transactionType,
         date: moment(date).format('DD MMMM YYYY'),
     };
-
-    newTransaction.transactionType === 'Credit'
-        ? newTransaction.credit = amount
-        : newTransaction.debit = amount
-
     return newTransaction;
+}
+
+export const createDummyRecord = () => {
+
+    const date = moment(new Date(new Date().getFullYear(), new Date().getMonth(), Math.floor(Math.random() * 30) + 1)).format('DD MMMM YYYY');
+    const transactionType = Math.random() < 0.5 ? 'Credit' : 'Debit';
+    const amount = Math.floor(Math.random() * 9 + 1) * 1000;
+
+    return createTransactionObj(date, transactionType, amount);;
 }
 
 export const insertNewRecord = (newRecord) => {
@@ -46,13 +34,14 @@ export const insertNewRecord = (newRecord) => {
     return sortedRecord;
 }
 
-export const calculateBalance = (records) => {
-    if (!records || records.length === 0) {
+export const calculateBalance = (transactionRecords) => {
+
+    if (!transactionRecords || transactionRecords.length === 0) {
         return [];
     }
 
     let runningBalance = 0;
-    const updatedRecords = records.map((record, index) => {
+    const updatedRecords = transactionRecords.map((record, index) => {
         let balance = 0;
 
         if (index === 0) {
@@ -161,7 +150,7 @@ export const filterAvailableMonths = () => {
     return availableMonths;
 }
 
-const getWeekNumberByDate = (dateString) => {
+export const getWeekNumberByDate = (dateString) => {
     const date = parseInt(dateString.split(' ')[0]);
     const weekNumber = Math.floor((date - 1) / 7) + 1;
     return weekNumber;
@@ -171,7 +160,7 @@ export const getWeeklyDate = (data) => {
 
     const weeklyDate = data.reduce((sum, record) => {
         const weekNumber = getWeekNumberByDate(record.date);
-        console.log(weekNumber);
+
         if (!sum[weekNumber]) {
             sum[weekNumber] = { debit: 0, credit: 0, balance: 0 };
         }
@@ -181,8 +170,6 @@ export const getWeeklyDate = (data) => {
         sum[weekNumber].balance = record.balance;
         return sum;
     }, {});
-
-    console.log(weeklyDate);
 
     return weeklyDate;
 

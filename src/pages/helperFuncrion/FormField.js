@@ -14,7 +14,7 @@ const InputField = ({ label, type, value, onChange }) => (
     </div>
 );
 
-const SelectField = ({ label,  options, onChange }) => (
+const SelectField = ({ label, options, onChange }) => (
 
     <div className="form-group">
         <label className="form-label">

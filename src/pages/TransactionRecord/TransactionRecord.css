@@ -1,12 +1,3 @@
-.transactionRecord {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    height: 100%;
-    width: 50%;
-}
-
 
 table {
     width: 100%;
@@ -38,7 +29,7 @@ td {
     margin-bottom: 1.8rem;
 }
 
-.form-title {
+.card-title {
     text-align: center;
     font-size: 2rem;
     font-weight: 600;
@@ -48,22 +39,3 @@ td {
 
 }
 
-
-
-.statement-analysis {
-    padding: 10px;
-    background-color: #5c60f5;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1.6rem;
-    font-weight: 500;
-    width: min-content;
-    height: 4.5rem;
-
-    white-space: nowrap;
-    overflow: hidden;
-
-    margin-right: 1rem;
-}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import './StatementAnalysis.css'
-import { SelectField } from '../TransactionForm/FormField'
+import { SelectField } from '../helperFuncrion/FormField'
 import { calculateBalance, filterAvailableMonths, filterDataByMonth, getWeeklyDate, getmonthlyAverageBalance } from "../helperFuncrion/helperFunction";
 
 
@@ -59,7 +59,7 @@ const StatementAnalysis = ({ setShowChartModal }) => {
 
                 <SelectField label="Select Month" options={availableMonths} onChange={(e) => setSelectedMonth(e.target.value)} />
 
-                <ReactApexChart options={options} series={series} type="line" height={400} />
+                <ReactApexChart options={options} series={series} type="line" height={300} />
 
                 <div className="close-button-wrapper">
                     <button type="submit" onClick={() => setShowChartModal(false)}> Close  </button>

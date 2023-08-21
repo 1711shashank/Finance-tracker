@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './TransactionForm.css';
 import moment from 'moment/moment';
-import { InputField, SelectField, DatePicker, AddTransactionButton } from './FormField';
+import { InputField, SelectField, DatePicker, AddTransactionButton } from '../helperFuncrion/FormField';
 import { createTransactionObj, insertNewRecord } from '../helperFuncrion/helperFunction';
 
 const TransactionForm = ({ onTransactionAdded }) => {
@@ -34,9 +34,9 @@ const TransactionForm = ({ onTransactionAdded }) => {
     return (
         <>
             {/* <div className='transactionForm '> */}
-            <div className="form-container" >
+            <div className="card" >
 
-                <h2 className="form-title"> Add Transaction</h2>
+                <h2 className="card-title"> Add Transaction</h2>
 
                 <form onSubmit={handleSubmit} className="form">
 

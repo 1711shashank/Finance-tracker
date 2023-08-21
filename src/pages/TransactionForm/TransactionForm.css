@@ -7,7 +7,7 @@
     width: 50%;
 }
 
-.form-container {
+.card {
     display: block;
     max-width: 600px;
     margin: 4rem 2rem;
@@ -16,11 +16,11 @@
     border: 1px solid #eceef3;
     border-radius: 10px;
     width: 600vw;
-    height: 75%;
+    height: 85%;
     overflow-y: scroll;
 }
 
-.form-container::-webkit-scrollbar {
+.card::-webkit-scrollbar {
     display: none;
 }
 
@@ -41,7 +41,7 @@
     font-weight: 500;
     font-size: 1.4rem;
     color: #16192cc2;
-    margin-bottom: 1.8rem;
+    margin-bottom: 5px;
 
 }
 
